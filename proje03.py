@@ -10,7 +10,7 @@ def benzerKelimeler():
     oneriler = (kelimeVektoru.most_similar(positive=anahtarKelimeler))
     print(oneriler)
 
-    # Önerileri rafine et
+
     for oneri in oneriler:
         if anahtarKelimeler not in oneri:
             print("https://www.google.com.tr/search?q=" + oneri[0])

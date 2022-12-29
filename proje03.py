@@ -11,6 +11,8 @@ pencere.title("Gensim Kütüphanesi")
 canvas= Canvas(pencere, height=450, width=750)
 canvas.pack()
 
+
+
 frame_ust= Frame(pencere, bg="light blue")
 frame_ust.place(relx=0.1, rely=0.1, relwidth=0.8, relheight=0.1)
 
@@ -27,16 +29,23 @@ hatirlatma_tipi_etiket.pack(padx=10, pady=10, side=LEFT)
 etiket1= Label(frame_alt_sol, text="Seçenekler:", bg="light blue", font="Verdana 9 bold")
 etiket1.pack(padx=10, pady=10, anchor=NW)
 
+pencere2= Tk()
+pencere2.title("Arama Sonuçları")
+pencere2.geometry("500x750")
 def benzerKelimeler():
     anahtarKelimeler = entry.get().lower().split()
-    print("Girdiğiniz kelimeler: " + ", ".join(anahtarKelimeler))
+    etiket5= Label(text="Girdiğiniz kelimeler: " + ", ".join(anahtarKelimeler))
+    etiket5.pack()
     if anahtarKelimeler:
         try:
             oneriler = kelimeVektoru.most_similar(positive=anahtarKelimeler)
             for oneri in oneriler:
                 if not any(keyword in oneri[0] for keyword in anahtarKelimeler):
-                    print(oneri[0])
-                    print("https://www.google.com.tr/search?q=" + oneri[0])
+
+                    etiket3 = Label(pencere2,text="Benzer Kelime:" +oneri[0])
+                    etiket3.pack(anchor=S)
+                    etiket4 = Label(pencere2, text="https://www.google.com.tr/search?q=" + oneri[0])
+                    etiket4.pack(anchor=S)
         except KeyError:
             messagebox.showwarning(pencere,"Girdiğiniz kelime kütüphanede yok!")
 
